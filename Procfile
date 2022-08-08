@@ -1,3 +1,3 @@
 web: gunicorn keitaro.wsgi 
 
-manage.py migrate 
+pyhton manage.py migrate 
