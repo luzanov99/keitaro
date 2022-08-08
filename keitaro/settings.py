@@ -29,8 +29,7 @@ else:
     ALLOWED_HOSTS = []
 
 
-if not IS_HEROKU:
-    DEBUG = True
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
