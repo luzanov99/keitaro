@@ -4,8 +4,8 @@ from requests.auth import HTTPBasicAuth
 import os
 
 def keitaro(kl_id='Today', start_date=None, end_date=None):
-    url = 'http://136.244.93.168/admin_api/v1/report/build'
-    headers = {'Api-Key': '7b88e90dfad2f86bf250b0ac388176ec'}
+    url = os.environ.get("KEITARO_URL")
+    headers = {'Api-Key': os.environ.get("API_KEY")}
     #print(os.environ.get("KEITARO_URL"))
     result = list()
     if start_date == "--" or start_date is None:
