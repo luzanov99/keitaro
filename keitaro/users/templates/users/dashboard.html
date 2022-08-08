@@ -1,0 +1,58 @@
+
+{% extends "base.html" %}
+
+{% block title %}Bayers{% endblock %}
+{% block content %}
+
+{% if user.is_authenticated %}
+ 
+  <p id="logout"><a href="{% url 'logout' %}">Log Out</a></p>
+
+{% endif %}
+<div class="dropdown">
+    <form method="post" novalidate>
+        {% csrf_token %}
+        
+        
+        {{form.data_name}}
+        <div id="qwe">
+            {{form.start_date.label}}
+        </div> 
+        {{form.start_date}}
+        <div id="las">
+            {{form.end_date.label}}
+        </div> 
+
+        {{form.end_date}}
+        <button type="submit" class="btn btn-success">Filter</button>
+      </form>
+<div>
+    <script>
+        function showDiv(divId, element)
+        {
+            
+       document.getElementById(divId).style.display = element.value == "diapazon" ? 'block' : 'none';
+       if (document.getElementById(divId).style.display == 'none'){
+        document.getElementById(divId).value="";
+       }
+
+       document.getElementById("qwe").style.display = document.getElementById(divId).style.display;
+       document.getElementById("las").style.display = document.getElementById(divId).style.display;
+        }
+
+        
+        
+    </script>
+<table class="table">
+    <tr>
+        <td>Username</td>
+        <td>Clicks</td>
+        <td>Conversions</td>
+    </tr>
+    {% for bayer in bayers %}
+        {% for metric in bayer %}
+        <td class="td_metric">{{ metric}}</td>
+        {% endfor %}
+    {% endfor %}
+    </table>
+{% endblock %}
