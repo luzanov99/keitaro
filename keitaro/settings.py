@@ -145,7 +145,7 @@ LOGIN_URL = '/login'
 LOGIN_REDIRECT_URL = '/users/dashboard/'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-LOGOUT_REDIRECT_URL = ' users/login'
+LOGOUT_REDIRECT_URL = 'users/login'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 django_heroku.settings(locals())
 STATIC_ROOT = BASE_DIR / "staticfiles"

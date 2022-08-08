@@ -58,4 +58,4 @@ def dashboard(request):
 
 def logout_user(request):
     logout(request)
-    return HttpResponseRedirect('http://keratis.herokuapp.com//users/login/')
+    return HttpResponseRedirect('http://keratis.herokuapp.com/users/login/')
