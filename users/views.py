@@ -4,27 +4,21 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .forms import LoginForm, DateFilterForm
 from rest_framework import viewsets, status, permissions, generics
+from rest_framework.views import APIView
 from rest_framework.response import Response
 from users.models import User
 from users.serializers import UserSerializer
 from django.core.exceptions import ObjectDoesNotExist
 from users.request import keitaro
 
-class CreateUserViewSet(viewsets.ModelViewSet):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
-    def create(self, request, *args, **kwargs):
-        data = request.data
-        try:
-            username = request.POST['username']
-            password = request.POST['password'] 
-            user = User.objects.get(username=username, password=password)
-            return Response("This user is already created", status=status.HTTP_201_CREATED)
-        except ObjectDoesNotExist:
-            user = User(username=data['username'])
-            user.set_password(password)
-            user.save()
-        return Response(data, status=status.HTTP_201_CREATED)
+class CreateUser(APIView):
+    def post(self, request, format=None):
+        serializer = UserSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
         
 def user_login(request):
     if request.method == 'POST':
