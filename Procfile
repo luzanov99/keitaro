@@ -1,3 +1,4 @@
 web: gunicorn keitaro.wsgi 
+
 python manage.py makemigrations users
-python manage.py migrate
+manage.py migrate
