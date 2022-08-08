@@ -35,7 +35,7 @@ def user_login(request):
             if user is not None:
                 if user.is_active:
                     login(request, user)
-                    return redirect('http://127.0.0.1:8000/users/dashboard/')
+                    return redirect('http://keratis.herokuapp.com//users/dashboard/')
                     #return render(request, 'users/dashboard.html', {'section':'dashboard'})
                 else:
                     return HttpResponse('Disabled account')
@@ -64,4 +64,4 @@ def dashboard(request):
 
 def logout_user(request):
     logout(request)
-    return HttpResponseRedirect('http://127.0.0.1:8000/users/login/')
+    return HttpResponseRedirect('http://keratis.herokuapp.com//users/login/')
