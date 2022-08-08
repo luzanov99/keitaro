@@ -40,7 +40,9 @@ SECRET_KEY = 'django-insecure-i(-o+4-ehpe71i%o6#ewfsbas_^r9j3sqlw7^obo)rm74bp5@w
 DEBUG = True
 
 ALLOWED_HOSTS = ['keitariose.herokuapp.com', '127.0.0.1']
-
+AUTHENTICATION_BACKENDS = (
+        'django.contrib.auth.backends.ModelBackend',
+    )
 
 # Application definition
 

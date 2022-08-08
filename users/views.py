@@ -15,7 +15,9 @@ class CreateUser(APIView):
     def post(self, request, format=None):
         serializer = UserSerializer(data=request.data)
         if serializer.is_valid():
-            serializer.save()
+            user = User(username=serializer.data['username'])
+            user.set_password(serializer.data['password'])
+            user.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -25,11 +27,13 @@ def user_login(request):
         form = LoginForm(request.POST)
         if form.is_valid():
             cd = form.cleaned_data
+            print(cd)
             user = authenticate(username=cd['username'], password=cd['password'])
+            print(user)
             if user is not None:
                 if user.is_active:
                     login(request, user)
-                    return redirect('http://keratis.herokuapp.com//users/dashboard/')
+                    return redirect('http://keratis.herokuapp.com/users/dashboard/')
                     #return render(request, 'users/dashboard.html', {'section':'dashboard'})
                 else:
                     return HttpResponse('Disabled account')
