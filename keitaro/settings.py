@@ -29,7 +29,8 @@ else:
     ALLOWED_HOSTS = []
 
 
-
+if not IS_HEROKU:
+    DEBUG = True
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
@@ -38,8 +39,7 @@ SECRET_KEY = 'django-insecure-i(-o+4-ehpe71i%o6#ewfsbas_^r9j3sqlw7^obo)rm74bp5@w
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-if not IS_HEROKU:
-    DEBUG = True
+
 ALLOWED_HOSTS = ['keitariose.herokuapp.com', '127.0.0.1']
 
 
